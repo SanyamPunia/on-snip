@@ -8,9 +8,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-type Props = {};
-
-const RoomCreator = (props: Props) => {
+const RoomCreator = () => {
   const [roomName, setRoomName] = useState<string>("");
 
   const { mutate, error, isPending } = useMutation({
