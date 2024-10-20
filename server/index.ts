@@ -8,7 +8,7 @@ import "dotenv/config";
 const app = express();
 app.use(
   cors({
-    origin: "https://on-snip.vercel.app",
+    origin: "https://on-snip.org",
     credentials: true,
   })
 );
@@ -19,7 +19,7 @@ const subRedis = new Redis(process.env.REDIS_CONNECTION_STRING);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://on-snip.vercel.app",
+    origin: "https://on-snip.org",
     methods: ["GET", "POST"],
     credentials: true,
   },

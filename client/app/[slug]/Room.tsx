@@ -74,7 +74,7 @@ const Room = ({
             {typeof msg.text === "string" ? (
               <p className="text-neutral-300">{msg.text}</p>
             ) : (
-              <p className="text-neutral-300">{msg.text.text}</p> // Handling nested object case
+              <p className="text-neutral-300">{msg.text.text}</p>
             )}
           </div>
         ))}
