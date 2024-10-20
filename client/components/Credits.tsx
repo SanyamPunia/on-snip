@@ -1,9 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-type Props = {};
-
-const Credits = (props: Props) => {
+const Credits = () => {
   return (
     <div className="absolute bottom-4 text-xs text-neutral-500 flex items-center gap-1">
       Developed by
