@@ -1,6 +1,7 @@
 import { Star } from "lucide-react";
 import RoomCreator from "@/components/RoomCreator";
 import { redis } from "@/lib/redis";
+import Credits from "@/components/Credits";
 
 export default async function Home() {
   const servedRequests = await redis.get("served-requests");
@@ -33,6 +34,8 @@ export default async function Home() {
           </p>
         </div>
       </div>
+
+      <Credits />
     </div>
   );
 }
