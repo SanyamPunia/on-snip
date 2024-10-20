@@ -15,6 +15,14 @@ const RoomCreator = () => {
     mutationFn: createTopic,
   });
 
+  const handleSubmit = () => {
+    if (roomName.trim()) {
+      mutate({
+        topicName: roomName,
+      });
+    }
+  };
+
   return (
     <>
       <div className="w-full max-w-sm flex items-center space-x-2">
@@ -24,15 +32,15 @@ const RoomCreator = () => {
           onChange={(e) => setRoomName(e.target.value)}
           placeholder="Enter a room name"
           className="bg-neutral-800 border-neutral-700 text-sm"
-          required
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
         />
         <Button
           disabled={isPending}
-          onClick={() =>
-            mutate({
-              topicName: roomName,
-            })
-          }
+          onClick={handleSubmit}
           type="submit"
           size="sm"
           className="bg-neutral-700 hover:bg-neutral-600"

@@ -26,20 +26,17 @@ const io = new Server(server, {
 });
 
 subRedis.on("message", (channel, message) => {
-  console.log("Received message:", message);
-  console.log("Channel:", channel);
   io.to(channel).emit("room-update", JSON.parse(message));
 });
 
 subRedis.on("error", (err) => {
-  console.log("Redis subscription error", err);
+  console.log("Redis subscr iption error", err);
 });
 
 io.on("connection", async (socket) => {
   const { id } = socket;
 
   socket.on("join-room", async (room: string) => {
-    console.log("User joined room:", room);
 
     const subscribedRooms = await redis.smembers("subscribed-rooms");
     await socket.join(room);
@@ -58,7 +55,6 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("leave-room", async (room: string) => {
-    console.log("User left room:", room);
     await socket.leave(room);
     await redis.srem(`rooms:${id}`, room);
     const remainingConnections = await redis.hincrby(

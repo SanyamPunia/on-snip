@@ -4,23 +4,32 @@ import { redis } from "@/lib/redis";
 import { redirect } from "next/navigation";
 
 export const createTopic = async ({ topicName }: { topicName: string }) => {
-  const regex = /^[a-zA-Z-]+$/;
+  const toKebabCase = (str: string) => {
+    return str
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]+/g, "");
+  };
 
-  if (!topicName || topicName.length > 50) {
+  const kebabCaseTopic = toKebabCase(topicName);
+
+  const regex = /^[a-z-]+$/;
+
+  if (!kebabCaseTopic || kebabCaseTopic.length > 50) {
     return {
-      error: "Name must be in b/w 1 & 50 chars",
+      error: "Name must be between 1 & 50 characters",
     };
   }
 
-  if (!regex.test(topicName)) {
+  if (!regex.test(kebabCaseTopic)) {
     return {
-      error: "Only letters and hyphens allowed in name",
+      error: "Only letters and hyphens are allowed",
     };
   }
 
-  await redis.sadd("exisiting-topics", topicName);
+  await redis.sadd("existing-topics", kebabCaseTopic);
 
-  redirect(`/${topicName}`);
+  redirect(`/${kebabCaseTopic}`);
 };
 
 export const submitComment = async ({

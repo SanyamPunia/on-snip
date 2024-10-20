@@ -36,7 +36,6 @@ const Room = ({
     socket.emit("join-room", `room:${room}`);
 
     socket.on("room-update", (newMessage: { text: string; id: string }) => {
-      console.log("Received message:", newMessage);
       setMessages((prevMessages) => [...prevMessages, newMessage]);
     });
 
@@ -86,7 +85,11 @@ const Room = ({
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && handleSubmit()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit();
+              }
+            }}
             placeholder="Type a message"
             className="flex-grow bg-neutral-800 border-neutral-700 text-sm"
           />
