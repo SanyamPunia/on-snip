@@ -23,26 +23,6 @@ export const createTopic = async ({ topicName }: { topicName: string }) => {
   redirect(`/${topicName}`);
 };
 
-// export const submitComment = async ({
-//   comment,
-//   room,
-// }: {
-//   comment: string;
-//   room: string;
-// }) => {
-//   // await redis.zadd(`room:${room}`, {
-//   //   score: timestamp,
-//   //   member: comment,
-//   // });
-
-//   await redis.lpush(`room:${room}:comments`, comment);
-
-//   await redis.incr("served-requests");
-//   await redis.publish(`room:${room}`, comment);
-
-//   return comment;
-// };
-
 export const submitComment = async ({
   comment,
   room,

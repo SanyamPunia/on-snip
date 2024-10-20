@@ -6,7 +6,12 @@ import { Redis } from "ioredis";
 import "dotenv/config";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://on-snip.vercel.app",
+    credentials: true,
+  })
+);
 
 const redis = new Redis(process.env.REDIS_CONNECTION_STRING);
 const subRedis = new Redis(process.env.REDIS_CONNECTION_STRING);
@@ -14,7 +19,7 @@ const subRedis = new Redis(process.env.REDIS_CONNECTION_STRING);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://on-snip.vercel.app/"],
+    origin: "https://on-snip.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
