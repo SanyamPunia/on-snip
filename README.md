@@ -2,7 +2,7 @@
 
 on-snip is a real-time collaborative messaging platform built with Next.js, Express, Socket.IO, and Redis.
 
-![on-snip logo](https://raw.githubusercontent.com/SanyamPunia/on-snip/refs/heads/main/client/app/opengraph-image.jpg?token=GHSAT0AAAAAACTRWWFGN7ONESGQQYLO5NGEZYVGEVQ)
+![on-snip logo](https://github.com/user-attachments/assets/96819d95-58ff-4b74-bbcd-eb10bfbc4621)
 
 ## Features
 
