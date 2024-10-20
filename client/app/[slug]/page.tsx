@@ -1,5 +1,6 @@
 import { redis } from "@/lib/redis";
 import Room from "./Room";
+import { Metadata } from "next";
 
 interface PageProps {
   params: {
@@ -24,3 +25,11 @@ const Page = async ({ params }: PageProps) => {
 };
 
 export default Page;
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  return {
+    title: `on-snip | ${params.slug}`,
+  };
+}

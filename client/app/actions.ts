@@ -40,11 +40,3 @@ export const submitComment = async ({
 
   return messageObject;
 };
-
-
-export const deleteComment = async ({ id, room }: { id: string; room: string }) => {
-  // Remove the message from the Redis list
-  await redis.lrem(`room:${room}:comments`, 0, id);
-
-  return id; // Return the deleted message ID to update the UI
-};

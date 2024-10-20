@@ -13,7 +13,6 @@ const IS_PROD = process.env.NODE_ENV === "production";
 const URL = IS_PROD
   ? "https://on-snip-e08a9f5afb2d.herokuapp.com/"
   : "http://localhost:8080";
-  
 const socket = io(URL, {
   withCredentials: true,
 });
