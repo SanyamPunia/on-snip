@@ -104,7 +104,7 @@ const subRedis = new Redis(process.env.REDIS_CONNECTION_STRING);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000"],
+    origin: ["https://on-snip.vercel.app/"],
     methods: ["GET", "POST"],
     credentials: true,
   },
