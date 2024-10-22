@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 export const createTopic = async ({ topicName }: { topicName: string }) => {
   const toKebabCase = (str: string) => {
     return str
+      .trim()
       .toLowerCase()
       .replace(/\s+/g, "-")
       .replace(/[^\w-]+/g, "");

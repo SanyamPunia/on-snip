@@ -87,6 +87,10 @@ Visit [https://on-snip.org](https://on-snip.org) to see the live application.
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## TO-DO
+
+- [ ] Redirect with captcha (priority)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
