@@ -89,7 +89,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## TO-DO
 
-- [ ] Redirect with captcha (priority)
+- [x] Redirect with captcha (priority)
 
 ## License
 
