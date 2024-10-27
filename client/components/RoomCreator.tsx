@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { getCaptchaToken } from "@/lib/captcha";
 
 const RoomCreator = () => {
   const [roomName, setRoomName] = useState<string>("");
@@ -15,10 +16,13 @@ const RoomCreator = () => {
     mutationFn: createTopic,
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const token = await getCaptchaToken();
+
     if (roomName.trim()) {
       mutate({
         topicName: roomName,
+        token: token,
       });
     }
   };

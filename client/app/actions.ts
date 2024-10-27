@@ -1,9 +1,41 @@
 "use server";
 
+import { verifyCaptchaToken } from "@/lib/captcha";
 import { redis } from "@/lib/redis";
 import { redirect } from "next/navigation";
 
-export const createTopic = async ({ topicName }: { topicName: string }) => {
+export const createTopic = async ({
+  topicName,
+  token,
+}: {
+  topicName: string;
+  token: string | null;
+}) => {
+  if (!token) {
+    return {
+      success: false,
+      message: "Token not found",
+    };
+  }
+
+  // verify token
+  const captchaData = await verifyCaptchaToken(token);
+
+  if (!captchaData) {
+    return {
+      success: false,
+      message: "Captcha Failed",
+    };
+  }
+
+  if (!captchaData.success || captchaData.score < 0.5) {
+    return {
+      success: false,
+      message: "Captcha Failed",
+      errors: !captchaData.success ? captchaData["error-code"] : undefined,
+    };
+  }
+
   const toKebabCase = (str: string) => {
     return str
       .trim()
